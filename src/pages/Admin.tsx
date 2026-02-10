@@ -214,6 +214,11 @@ const Admin = ({ language }: { language: 'ka' | 'en' }) => {
               onChange={(event) => setFiles(event.target.files)}
             />
           </label>
+          <span className="form-note">
+            {isGeorgian
+              ? 'Vercel-ზე ატვირთვა არ ინახავს ფოტოებს. გამოიყენე ტექსტური აღწერა.'
+              : 'On Vercel, uploads are not stored. Use text description for now.'}
+          </span>
           {error ? <span className="form-error">{error}</span> : null}
           <button type="submit" disabled={isSaving}>
             {isSaving

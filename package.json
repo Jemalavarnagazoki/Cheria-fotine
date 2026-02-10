@@ -11,6 +11,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "bcrypt": "^5.1.1",
+    "busboy": "^1.6.0",
     "flag-icons": "^7.5.0",
     "mongodb": "^6.21.0",
     "react": "^19.2.0",

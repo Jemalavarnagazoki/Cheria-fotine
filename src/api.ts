@@ -1,4 +1,6 @@
-const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:3001'
+const API_BASE =
+  import.meta.env.VITE_API_BASE ||
+  (import.meta.env.DEV ? 'http://localhost:3001' : '')
 
 export const getApiBase = () => API_BASE
 
