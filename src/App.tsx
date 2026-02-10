@@ -17,6 +17,7 @@ function App() {
   const { isAuthenticated, isAdmin, logout } = useAuth()
   const [language, setLanguage] = useState<'ka' | 'en'>('en')
   const [theme, setTheme] = useState<'light' | 'dark'>('light')
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
   const location = useLocation()
   const categoryOptions = useMemo(
     () => getCategoryOptions(language),
@@ -86,6 +87,10 @@ function App() {
     document.documentElement.dataset.theme = theme
   }, [theme])
 
+  useEffect(() => {
+    setIsMenuOpen(false)
+  }, [location.pathname])
+
   return (
     <div className="site-shell">
       <header className="nav-bar">
@@ -94,7 +99,22 @@ function App() {
           <span className="brand-divider">/</span>
           <span className="brand-mark">cheria</span>
         </div>
-        <nav className="nav-links">
+        <button
+          type="button"
+          className="nav-burger"
+          onClick={() => setIsMenuOpen((prev) => !prev)}
+          aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={isMenuOpen}
+          aria-controls="site-nav"
+        >
+          <span className="nav-burger-line" />
+          <span className="nav-burger-line" />
+          <span className="nav-burger-line" />
+        </button>
+        <nav
+          id="site-nav"
+          className={isMenuOpen ? 'nav-links is-open' : 'nav-links'}
+        >
           {localizedNavItems.map((item) => (
             <NavLink
               key={item.to}
